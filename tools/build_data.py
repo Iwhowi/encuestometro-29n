@@ -1,7 +1,8 @@
 """Genera data.json para la web pública a partir de la salida de aggregate.py.
 
 Uso: python3 tools/build_data.py OUT_DIR data.json
-Lee partidos.csv, promedio_diario.csv, encuestas.csv, verificacion.csv y actualizacion.json.
+Lee partidos.csv, promedio_diario.csv, encuestas.csv, verificacion.csv, proyeccion.csv,
+escenarios.csv, proyeccion_historial.csv y actualizacion.json.
 """
 import csv, json, sys
 
@@ -20,6 +21,9 @@ data = {
     "serie": read_csv("promedio_diario.csv"),
     "encuestas": read_csv("encuestas.csv"),
     "verificacion": read_csv("verificacion.csv"),
+    "proyeccion": read_csv("proyeccion.csv"),
+    "escenarios": read_csv("escenarios.csv"),
+    "proyeccion_historial": read_csv("proyeccion_historial.csv"),
 }
 assert len(data["partidos"]["rows"]) >= 5, "partidos.csv incompleto"
 json.dump(data, open(dst, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
